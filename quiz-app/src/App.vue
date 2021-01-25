@@ -9,7 +9,7 @@
       </div>
     </div>
     <transition name="router-view-transition-slide-down" mode="out-in">
-      <router-view />
+      <router-view :key="$route.fullPath" />
     </transition>
   </div>
 </template>
@@ -25,11 +25,9 @@ $mainGreen: rgb(63, 212, 155);
   min-height: 100vh;
   font-family: "Work Sans", sans-serif;
 }
-.row,
-.col,
+#app .row,
 #app p {
   margin: 0;
-  padding: 0;
 }
 #nav {
   padding: 25px 0px;
@@ -94,6 +92,13 @@ $mainGreen: rgb(63, 212, 155);
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.text-overflow-ellipsis-3 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 </style>

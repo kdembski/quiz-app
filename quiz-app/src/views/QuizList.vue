@@ -1,12 +1,13 @@
 <template>
-  <div class="container-xl">
+  <div class="container-xl py-lg-5 py-3">
     <div class="quiz-list">
       <quiz-overview
         v-for="(quiz, index) in quizzes"
         :key="index"
         :initialQuiz="quiz"
-        class="mb-4"
-      ></quiz-overview>
+        class="mb-lg-3 mb-2"
+      >
+      </quiz-overview>
     </div>
   </div>
 </template>
@@ -27,9 +28,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.quiz-list{
-  padding: 32px 0px;
-}
-  
-</style>
+<style lang="scss"></style>

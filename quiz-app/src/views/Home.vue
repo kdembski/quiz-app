@@ -1,51 +1,60 @@
 <template>
-  <div class="home container-xl">
-    <div class="introduction-div">
-      Nie masz pojęcia co ze sobą zrobić?
-      <br>Jednocześnie na samą myśl o robieniu czegoś produktywnego zbiera Ci się na wymioty?
-      <br>Mam coś dla ciebie!
-      <br>Oto kilka mniej lub bardziej sensownych quizów, którą mogą pomóc zapełnić Ci tą pustkę i zająć myśli czymś innym, niż problemy życia codziennego.
+  <div class="home container-xl py-lg-5 py-3">
+    <div class="introduction-div mb-lg-4 mb-3">
+      <div class="introduction-header">
+        Quiz app
+      </div>
+      Aplikacja, która udostępnia do wykonania kilka, mniej lub bardziej sensownych, quizów.
     </div>
-    <div class="example-quiz-header">
+    <div class="example-quiz-header mb-2">
       Przykładowy quiz:
     </div>
+
     <div class="example-quiz-container-div">
       <transition :name="exampleQuizSlideDirection">
         <div class="example-quiz-div" :key="currentExampleIndex">
-          <img
-            class="example-quiz-image"
-            :src="
-              require(`../assets/${quizzes[currentExampleIndex].solutions[0].image}`)
-            "
-          />
-          <img
-            class="example-quiz-image"
-            :src="
-              require(`../assets/${quizzes[currentExampleIndex].solutions[1].image}`)
-            "
-          />
-          <img
-            class="example-quiz-image"
-            :src="
-              require(`../assets/${quizzes[currentExampleIndex].solutions[2].image}`)
-            "
-          />
-          <img
-            class="example-quiz-image"
-            :src="
-              require(`../assets/${quizzes[currentExampleIndex].solutions[3].image}`)
-            "
-          />
-          <div class="example-quiz-name">
-            <p class="text-overflow-ellipsis-2">
-              {{ quizzes[currentExampleIndex].name }}
-            </p>
-          </div>
-          <div class="example-quiz-description">
-            <p class="text-overflow-ellipsis-2">
-              {{ quizzes[currentExampleIndex].description }}
-            </p>
-          </div>
+          <router-link
+            :to="{
+              name: 'QuizDetails',
+              params: { id: quizzes[currentExampleIndex].id },
+            }"
+            class="custom-router-link"
+          >
+            <img
+              class="example-quiz-image"
+              :src="
+                require(`../assets/${quizzes[currentExampleIndex].solutions[0].image}`)
+              "
+            />
+            <img
+              class="example-quiz-image"
+              :src="
+                require(`../assets/${quizzes[currentExampleIndex].solutions[1].image}`)
+              "
+            />
+            <img
+              class="example-quiz-image"
+              :src="
+                require(`../assets/${quizzes[currentExampleIndex].solutions[2].image}`)
+              "
+            />
+            <img
+              class="example-quiz-image"
+              :src="
+                require(`../assets/${quizzes[currentExampleIndex].solutions[3].image}`)
+              "
+            />
+            <div class="example-quiz-name">
+              <p class="text-overflow-ellipsis-2">
+                {{ quizzes[currentExampleIndex].name }}
+              </p>
+            </div>
+            <div class="example-quiz-description">
+              <p class="text-overflow-ellipsis-2">
+                {{ quizzes[currentExampleIndex].description }}
+              </p>
+            </div>
+          </router-link>
           <div
             class="example-quiz-left-arrow-div"
             @click="decreaseCurrentExampleIndex"
@@ -81,7 +90,7 @@ export default {
   },
   methods: {
     increaseCurrentExampleIndex() {
-      this.exampleQuizSlideDirection = "example-quiz-transition-slide-left";
+      this.exampleQuizSlideDirection = "example-quiz-transition-slide-right";
       this.currentExampleIndex++;
       if (this.currentExampleIndex >= this.quizzes.length) {
         this.currentExampleIndex = 0;
@@ -92,7 +101,7 @@ export default {
       }, 5000);
     },
     decreaseCurrentExampleIndex() {
-      this.exampleQuizSlideDirection = "example-quiz-transition-slide-right";
+      this.exampleQuizSlideDirection = "example-quiz-transition-slide-left";
       this.currentExampleIndex--;
       if (this.currentExampleIndex < 0) {
         this.currentExampleIndex = this.quizzes.length - 1;
@@ -123,20 +132,27 @@ $mainGreen: rgb(63, 212, 155);
 
 .home {
   min-height: 100%;
-  padding: 32px 0px;
 }
 .example-quiz-header,
-.introduction-div{
+.introduction-div {
   border-radius: 6px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
   background: $mainPurple;
-  margin-bottom: 2rem;
   padding: 16px;
   color: $mainBlue;
-  font-size: 25px;
+  font-size: 20px;
+  font-weight: 400;
 }
-.example-quiz-header{
-  margin-bottom: 1rem;
+.introduction-header {
+  font-size: 1.8em;
+  font-weight: 900;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+}
+.example-quiz-header {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 2px;
 }
 .example-quiz-container-div {
   position: relative;
@@ -182,17 +198,17 @@ $mainGreen: rgb(63, 212, 155);
   @include flex-center();
   position: absolute;
   left: 0;
-  padding: 0px 40px;
+  padding: 0% 5%;
   color: $mainBlue;
   z-index: 1;
   height: 30%;
   transition: all 0.2s ease-in-out;
 }
 .example-quiz-name {
-  font-weight: 600;
-  font-size: 70px;
+  font-weight: 800;
+  font-size: 60px;
   top: 15%;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 .example-quiz-description {
   bottom: 15%;
@@ -273,7 +289,7 @@ $mainGreen: rgb(63, 212, 155);
 
 @media (max-width: 1200px) {
   .example-quiz-name {
-    font-size: 60px;
+    font-size: 50px;
   }
   .example-quiz-description {
     font-size: 20px;
@@ -282,10 +298,16 @@ $mainGreen: rgb(63, 212, 155);
   .example-quiz-left-arrow-div {
     font-size: 6vw;
   }
+  .example-quiz-header {
+    font-size: 25px;
+  }
+  .introduction-div {
+    font-size: 18px;
+  }
 }
 @media (max-width: 768px) {
   .example-quiz-name {
-    font-size: 50px;
+    font-size: 45px;
   }
   .example-quiz-description {
     font-size: 18px;
@@ -295,13 +317,25 @@ $mainGreen: rgb(63, 212, 155);
     width: 20%;
     font-size: 10vw;
   }
+  .example-quiz-header {
+    font-size: 22px;
+  }
+  .introduction-div {
+    font-size: 16px;
+  }
 }
 @media (max-width: 576px) {
   .example-quiz-name {
-    font-size: 35px;
+    font-size: 30px;
   }
   .example-quiz-description {
     font-size: 16px;
+  }
+  .example-quiz-header {
+    font-size: 20px;
+  }
+  .introduction-div {
+    font-size: 14px;
   }
 }
 </style>

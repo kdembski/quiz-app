@@ -1,27 +1,34 @@
 <template>
-  <div class="quiz-overview">
-    <img
-      class="quiz-overview-image"
-      :src="require(`../assets/${quiz.solutions[0].image}`)"
-    />
-    <img
-      class="quiz-overview-image"
-      :src="require(`../assets/${quiz.solutions[1].image}`)"
-    />
-    <img
-      class="quiz-overview-image"
-      :src="require(`../assets/${quiz.solutions[2].image}`)"
-    />
-    <img
-      class="quiz-overview-image"
-      :src="require(`../assets/${quiz.solutions[3].image}`)"
-    />
-    <div class="quiz-overview-name">
-      <p class="text-overflow-ellipsis-1">{{ quiz.name }}</p>
-    </div>
-    <div class="quiz-overview-description">
-      <p class="text-overflow-ellipsis-1">{{ quiz.description }}</p>
-    </div>
+  <div>
+    <router-link
+      :to="{ name: 'QuizDetails', params: { id: quiz.id } }"
+      class="custom-router-link"
+    >
+      <div class="quiz-overview">
+        <img
+          class="quiz-overview-image"
+          :src="require(`../assets/${quiz.solutions[0].image}`)"
+        />
+        <img
+          class="quiz-overview-image"
+          :src="require(`../assets/${quiz.solutions[1].image}`)"
+        />
+        <img
+          class="quiz-overview-image"
+          :src="require(`../assets/${quiz.solutions[2].image}`)"
+        />
+        <img
+          class="quiz-overview-image"
+          :src="require(`../assets/${quiz.solutions[3].image}`)"
+        />
+        <div class="quiz-overview-name">
+          <p class="text-overflow-ellipsis-2">{{ quiz.name }}</p>
+        </div>
+        <div class="quiz-overview-description">
+          <p class="text-overflow-ellipsis-2">{{ quiz.description }}</p>
+        </div>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -75,11 +82,11 @@ $mainGreen: rgb(63, 212, 155);
     }
     & .quiz-overview-name {
       color: $mainPurple;
-      top: 15%;
+      top: 10%;
     }
     & .quiz-overview-description {
       color: $mainPurple;
-      bottom: 15%;
+      bottom: 10%;
       opacity: 1;
     }
   }
@@ -101,24 +108,25 @@ $mainGreen: rgb(63, 212, 155);
   padding: 0px 15px;
   color: $mainBlue;
   z-index: 1;
-  height: 30%;
+  height: 40%;
   transition: all 0.2s ease-in-out;
+  line-height: 125%;
 }
 .quiz-overview-name {
-  font-weight: 600;
-  font-size: 50px;
-  letter-spacing: 1px;
-  top: 35%;
+  font-weight: 900;
+  font-size: 40px;
+  letter-spacing: 3px;
+  top: 30%;
 }
 .quiz-overview-description {
   bottom: -50%;
   opacity: 0;
-  font-weight: 600;
-  font-size: 25px;
+  font-weight: 400;
+  font-size: 20px;
 }
 @media (max-width: 1200px) {
   .quiz-overview-name {
-    font-size: 40px;
+    font-size: 35px;
   }
   .quiz-overview-description {
     font-size: 20px;
@@ -126,7 +134,7 @@ $mainGreen: rgb(63, 212, 155);
 }
 @media (max-width: 768px) {
   .quiz-overview-name {
-    font-size: 35px;
+    font-size: 25px;
   }
   .quiz-overview-description {
     font-size: 18px;
@@ -134,10 +142,10 @@ $mainGreen: rgb(63, 212, 155);
 }
 @media (max-width: 576px) {
   .quiz-overview-name {
-    font-size: 30px;
+    font-size: 20px;
   }
   .quiz-overview-description {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 </style>
