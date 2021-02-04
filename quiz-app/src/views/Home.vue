@@ -4,13 +4,14 @@
       <div class="introduction-header">
         Quiz app
       </div>
-      Aplikacja, która udostępnia do wykonania kilka, mniej lub bardziej sensownych, quizów.
+      Aplikacja zawiera kilka, mniej lub bardziej sensownych, quizów do
+      wykonania.
     </div>
     <div class="example-quiz-header mb-2">
       Przykładowy quiz:
     </div>
 
-    <div class="example-quiz-container-div">
+    <div class="example-quiz-container-div mb-lg-4 mb-3">
       <transition :name="exampleQuizSlideDirection">
         <div class="example-quiz-div" :key="currentExampleIndex">
           <router-link
@@ -70,6 +71,38 @@
         </div>
       </transition>
     </div>
+    <div class="technologies-div">
+      <div class="technologies-item">
+        <div class="technologies-item-text">
+          JavaScript
+        </div>
+      </div>
+      <div class="technologies-item">
+        <div class="technologies-item-text">
+          HTML5
+        </div>
+      </div>
+      <div class="technologies-item">
+        <div class="technologies-item-text">
+          CSS3
+        </div>
+      </div>
+      <div class="technologies-item">
+        <div class="technologies-item-text">
+          Sass
+        </div>
+      </div>
+      <div class="technologies-item">
+        <div class="technologies-item-text">
+          VueJS
+        </div>
+      </div>
+      <div class="technologies-item">
+        <div class="technologies-item-text">
+          Bootstrap4
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -122,7 +155,8 @@ export default {
 
 <style lang="scss">
 $mainBlue: rgb(94, 242, 255);
-$mainPurple: rgb(130, 61, 173);
+$mainPurple: rgb(184, 64, 235);
+$mainPurpleAlfa: rgba($mainPurple, 0.7);
 $mainGreen: rgb(63, 212, 155);
 @mixin flex-center {
   display: flex;
@@ -137,17 +171,18 @@ $mainGreen: rgb(63, 212, 155);
 .introduction-div {
   border-radius: 6px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
-  background: $mainPurple;
+  background: $mainPurpleAlfa;
   padding: 16px;
   color: $mainBlue;
   font-size: 20px;
   font-weight: 400;
 }
 .introduction-header {
-  font-size: 1.8em;
-  font-weight: 900;
-  margin-bottom: 10px;
+  font-size: 2.2em;
+  font-weight: 1000;
+  margin-bottom: 20px;
   letter-spacing: 3px;
+  line-height: 105%;
 }
 .example-quiz-header {
   font-size: 30px;
@@ -175,7 +210,7 @@ $mainGreen: rgb(63, 212, 155);
     height: 100%;
     left: 0;
     top: 0;
-    background: rgba(130, 61, 173, 0.6);
+    background: rgba($mainPurple, 0.4);
   }
   &:hover {
     .example-quiz-left-arrow-div {
@@ -206,7 +241,7 @@ $mainGreen: rgb(63, 212, 155);
 }
 .example-quiz-name {
   font-weight: 800;
-  font-size: 60px;
+  font-size: 70px;
   top: 15%;
   letter-spacing: 3px;
 }
@@ -215,6 +250,24 @@ $mainGreen: rgb(63, 212, 155);
   font-weight: 600;
   font-size: 25px;
 }
+.technologies-item {
+  display: inline-block;
+  width: calc(calc(100% / 6) - 20px);
+  margin: 10px 10px;
+  height: 60px;
+  background: $mainPurpleAlfa;
+  color: $mainBlue;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.technologies-item-text {
+  @include flex-center;
+  width: 100%;
+  height: 100%;
+}
+
 .example-quiz-right-arrow-div,
 .example-quiz-left-arrow-div {
   @include flex-center();
@@ -305,6 +358,11 @@ $mainGreen: rgb(63, 212, 155);
     font-size: 18px;
   }
 }
+@media (max-width: 992px) {
+  .technologies-item {
+    width: calc(calc(100% / 3) - 20px);
+  }
+}
 @media (max-width: 768px) {
   .example-quiz-name {
     font-size: 45px;
@@ -322,6 +380,9 @@ $mainGreen: rgb(63, 212, 155);
   }
   .introduction-div {
     font-size: 16px;
+  }
+  .technologies-item {
+    width: calc(calc(100% / 2) - 20px);
   }
 }
 @media (max-width: 576px) {

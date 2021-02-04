@@ -46,7 +46,8 @@ export default {
 
 <style lang="scss">
 $mainBlue: rgb(94, 242, 255);
-$mainPurple: rgb(130, 61, 173);
+$mainPurple: rgb(184, 64, 235);
+$mainPurpleAlfa: rgba($mainPurple, 0.7);
 $mainGreen: rgb(63, 212, 155);
 @mixin flex-center {
   display: flex;
@@ -70,12 +71,12 @@ $mainGreen: rgb(63, 212, 155);
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(130, 61, 173, 0.8);
+    background: rgba($mainPurple, 0.9);
     transition: all 0.2s ease-in-out;
   }
   &:hover {
     &::after {
-      background: rgba(94, 242, 255, 0.8);
+      background: rgba(94, 242, 255, 0.9);
     }
     & .quiz-overview-image {
       filter: blur(0px);

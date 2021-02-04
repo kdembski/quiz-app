@@ -27,9 +27,17 @@
           <div
             v-for="(bar, index) in quiz.questions.length"
             :key="index"
-            class="col p-0 quiz-progress-bar-element"
-            :class="{'col p-0 quiz-progress-bar-element active': index == questionIndex,  'col p-0 quiz-progress-bar-element completed': index < questionIndex , 'col p-0 quiz-progress-bar-element': true}"
-          ></div>
+            class="col p-0 d-flex justify-content-center"
+          >
+            <div
+              class="quiz-progress-bar-element"
+              :class="{
+                'quiz-progress-bar-element active': index == questionIndex,
+                'quiz-progress-bar-element completed': index < questionIndex,
+                'quiz-progress-bar-element': true,
+              }"
+            ></div>
+          </div>
         </div>
         <div class="question-slide-div  mt-2 mt-lg-4">
           <transition :name="questionDivSlideDirection">
@@ -263,7 +271,8 @@ export default {
 
 <style lang="scss">
 $mainBlue: rgb(94, 242, 255);
-$mainPurple: rgb(130, 61, 173);
+$mainPurple: rgb(184, 64, 235);
+$mainPurpleAlfa: rgba($mainPurple, 0.8);
 $mainGreen: rgb(63, 212, 155);
 @mixin flex-center {
   display: flex;
@@ -284,7 +293,7 @@ $mainGreen: rgb(63, 212, 155);
     height: 100%;
     left: 0;
     top: 0;
-    background: rgba(130, 61, 173, 0.6);
+    background: rgba($mainPurple, 0.4);
   }
 }
 .quiz-details-image {
@@ -311,7 +320,7 @@ $mainGreen: rgb(63, 212, 155);
   @include flex-center();
   border-radius: 6px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
-  background: $mainPurple;
+  background: $mainPurpleAlfa;
   padding: 16px;
   color: $mainBlue;
 }
@@ -325,9 +334,10 @@ $mainGreen: rgb(63, 212, 155);
 .answers-div {
   position: relative;
   font-size: 25px;
-  min-height: 200px;
+  min-height: 190px;
   &:hover {
-    background: rgba(130, 61, 173, 0.5);
+    background: rgba($mainBlue, 0.5);
+    color: $mainPurple;
   }
 }
 .answer-radio-input {
@@ -349,7 +359,7 @@ $mainGreen: rgb(63, 212, 155);
   max-height: 100px;
   width: 100%;
   font-size: 20px;
-  background: rgb(200, 80, 80);
+  background: rgba(200, 80, 80, 0.8);
   color: rgb(120, 0, 0);
   border-radius: 6px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
@@ -439,7 +449,7 @@ $mainGreen: rgb(63, 212, 155);
     width: 25%;
     top: 0;
     font-size: 70px;
-    background: $mainPurple;
+    background: $mainPurpleAlfa;
     border-radius: 6px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
     transition: all 0.2s ease-in-out;
@@ -458,11 +468,10 @@ $mainGreen: rgb(63, 212, 155);
     height: 100%;
     width: 70%;
     top: 0;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 800;
     letter-spacing: 2px;
-    text-transform: uppercase;
-    background: $mainPurple;
+    background: $mainPurpleAlfa;
     border-radius: 6px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
     transition: all 0.2s ease-in-out;
@@ -480,7 +489,7 @@ $mainGreen: rgb(63, 212, 155);
 }
 .quiz-solution-name,
 .quiz-solution-description {
-  background: $mainPurple;
+  background: $mainPurpleAlfa;
   border-radius: 6px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
   padding: 16px;
@@ -578,7 +587,7 @@ $mainGreen: rgb(63, 212, 155);
     width: 25%;
     top: 0;
     font-size: 50px;
-    background: $mainPurple;
+    background: $mainPurpleAlfa;
     border-radius: 6px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
     transition: width 0.2s ease-in-out;
@@ -597,11 +606,10 @@ $mainGreen: rgb(63, 212, 155);
     height: 100%;
     width: 70%;
     top: 0;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 800;
     letter-spacing: 2px;
-    text-transform: uppercase;
-    background: $mainPurple;
+    background: $mainPurpleAlfa;
     border-radius: 6px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
     transition: all 0.2s ease-in-out;
@@ -617,15 +625,11 @@ $mainGreen: rgb(63, 212, 155);
 .quiz-progress-bar {
   height: 20px;
   width: 100%;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  background: black;
   &-element {
-    background: rgb(190, 190, 190);
-    margin-right: 1px;
-    &:last-child {
-      margin-right: -1px;
-    }
+    width: 98%;
+    height: 100%;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    background: rgb(90, 90, 90);
     &.completed {
       background: rgb(0, 182, 142);
     }
@@ -640,44 +644,44 @@ $mainGreen: rgb(63, 212, 155);
 }
 .question-div-transition-slide-left {
   &-enter {
-    transform: translateX(-30%);
+    transform: translateX(-50%);
     opacity: 0;
   }
   &-leave-to {
-    transform: translateX(30%);
+    transform: translateX(50%);
     opacity: 0;
   }
   &-enter-active {
     height: 100%;
     width: 100%;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.4s ease-in-out;
   }
   &-leave-active {
     position: absolute;
     height: 100%;
     width: 100%;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.4s ease-in-out;
   }
 }
 .question-div-transition-slide-right {
   &-enter {
-    transform: translateX(30%);
+    transform: translateX(50%);
     opacity: 0;
   }
   &-leave-to {
-    transform: translateX(-30%);
+    transform: translateX(-50%);
     opacity: 0;
   }
   &-enter-active {
     height: 100%;
     width: 100%;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.4s ease-in-out;
   }
   &-leave-active {
     position: absolute;
     height: 100%;
     width: 100%;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.4s ease-in-out;
   }
 }
 .quiz-details-div-transition-fade {
@@ -698,13 +702,13 @@ $mainGreen: rgb(63, 212, 155);
 .answer-not-selected-transition {
   &-enter {
     max-height: 0;
-    padding: 0;
+    padding: 0px 16px;
     margin: 0;
     transform: scaleY(0);
   }
   &-leave-to {
     max-height: 0;
-    padding: 0;
+    padding: 0px 16px;
     margin: 0;
     transform: scaleY(0);
   }
